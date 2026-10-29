@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties, type MouseEvent } from 'react'
 import './App.css'
 import { HeroDrawing, Wireframe } from './components/Drawings'
 import { Crosshair, ScrollRuler, Typewriter, useActiveSection, useReveal } from './components/Effects'
-import { DraftingTools, useKonami } from './components/Toys'
+import { CorgiPhoto, DraftingTools, useKonami } from './components/Toys'
 import { experience, profile, projects, skills, stats } from './data'
 
 const sections = [
@@ -258,7 +258,18 @@ function App() {
         </ol>
       </section>
 
-      
+      {/* CREW */}
+      <section id="crew" className="section">
+        <SectionHeader sheet="05" title="Ekipa" />
+        <div className="crew frame reveal">
+          <CorgiPhoto />
+          <div className="crew-spec">
+            <span className="crew-fig">RYS. 5 — DZIAŁ MORALE</span>
+            <h3>Corgi</h3>
+            <p className="crew-role">Losowo przydzielony</p>
+          </div>
+        </div>
+      </section>
 
       {/* CONTACT */}
       <section id="contact" className="section">

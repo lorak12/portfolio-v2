@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, type PointerEvent, type ReactNode, type RefObject } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type PointerEvent, type ReactNode, type RefObject } from 'react'
 
 type ToolKind = 'square' | 'protractor' | 'pencil'
 
@@ -248,4 +248,41 @@ export function useKonami(onUnlock: () => void) {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onUnlock])
+}
+
+const CORGI_API = 'https://dog.ceo/api/breed/pembroke/images/random'
+
+// A random corgi photo from dog.ceo; clicking fetches another one.
+export function CorgiPhoto() {
+  const [src, setSrc] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
+
+  const fetchCorgi = useCallback(async () => {
+    try {
+      const res = await fetch(CORGI_API)
+      const data: { message: string; status: string } = await res.json()
+      if (data.status !== 'success') throw new Error(data.status)
+      setSrc(data.message)
+      setFailed(false)
+    } catch {
+      setFailed(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchCorgi()
+  }, [fetchCorgi])
+
+  return (
+    <div className="corgi-wrap">
+      <button type="button" className="corgi-btn" onClick={fetchCorgi} aria-label="Pokaż innego corgi">
+        {src ? (
+          <img className="corgi-photo" src={src} alt="Losowy corgi" />
+        ) : (
+          <span className="corgi-photo corgi-placeholder">{failed ? 'PIESEK ZAGINĄŁ' : 'ŁADOWANIE…'}</span>
+        )}
+      </button>
+      <span className="corgi-hint">KLIKNIJ, ABY WYLOSOWAĆ INNEGO</span>
+    </div>
+  )
 }

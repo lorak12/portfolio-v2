@@ -1020,6 +1020,25 @@
   }
 }
 
+.corgi-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line-soft);
+  transition: filter 0.2s;
+}
+.corgi-btn:hover .corgi-photo {
+  filter: brightness(1.08);
+}
+.corgi-placeholder {
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--line-soft);
+}
+
 .corgi-hint {
   font-size: 10px;
   letter-spacing: 0.15em;
