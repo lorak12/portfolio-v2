@@ -1,0 +1,58 @@
+:root {
+  --paper: #0f3a7a;
+  --paper-deep: #0a2c5e;
+  --line: rgba(255, 255, 255, 0.9);
+  --line-soft: rgba(255, 255, 255, 0.55);
+  --line-faint: rgba(255, 255, 255, 0.18);
+  --grid-minor: rgba(255, 255, 255, 0.06);
+  --grid-major: rgba(255, 255, 255, 0.13);
+  --accent: #ffd166;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+
+  color-scheme: dark;
+  font-family: var(--font-mono);
+  color: var(--line);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size: 100% 100%, 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
